@@ -1,0 +1,14 @@
+environments:
+pipelines:
+  stagingPipe:
+    materials:
+      github:
+        git: https://github.com/vinicyusmacedo/flask-celery-sample.git
+      stages:
+      - build_stage:
+        jobs:
+          build_job:
+            tasks:
+            - exec: 
+              command: echo "hello"
+
