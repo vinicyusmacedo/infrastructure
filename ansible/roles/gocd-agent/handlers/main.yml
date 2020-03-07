@@ -1,0 +1,17 @@
+---
+# handlers file for gocd-agent
+- name: Start gocd-agent
+  systemd:
+    name: go-agent
+    state: started
+  become: true
+  tags:
+    - gocd
+
+- name: Restart gocd-agent
+  systemd:
+    name: go-agent
+    state: restarted
+  become: true
+  tags:
+    - gocd

@@ -1,0 +1,40 @@
+---
+# tasks file for gocd-server
+
+- name: Get gocd repo
+  apt_repository:
+    repo: "deb https://download.gocd.org /"
+    state: present
+  become: true
+  tags:
+    - gocd-apt
+
+- name: Get gocd key
+  apt_key:
+    url: https://download.gocd.org/GOCD-GPG-KEY.asc
+    state: present
+  become: true
+  tags:
+    - gocd-apt
+
+- name: Get gocd server
+  apt:
+    name: "go-server={{ gocd_version }}"
+    state: present
+    update_cache: true
+  become: true
+  notify: Start gocd-server
+  tags:
+    - gocd-apt
+
+- name: Copy wrapper-config
+  template:
+    src: templates/usr/share/go-server/wrapper-config/wrapper-properties.conf.j2
+    dest: /usr/share/go-server/wrapper-config/wrapper-properties.conf
+    mode: '0640'
+    owner: root
+    group: go
+  become: true
+  notify: Restart gocd-server
+  tags:
+    - gocd

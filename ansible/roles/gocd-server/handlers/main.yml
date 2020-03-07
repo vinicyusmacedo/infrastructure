@@ -1,0 +1,17 @@
+---
+# handlers file for gocd-server
+- name: Start gocd-server
+  systemd:
+    name: go-server
+    state: started
+  become: true
+  tags:
+    - gocd
+
+- name: Restart gocd-server
+  systemd:
+    name: go-server
+    state: restarted
+  become: true
+  tags:
+    - gocd

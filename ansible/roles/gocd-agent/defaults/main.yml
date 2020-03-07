@@ -1,0 +1,4 @@
+---
+# defaults file for gocd-server
+gocd_version: 20.1.0-11114
+gocd_server: http://localhost:8153/go
