@@ -38,3 +38,24 @@
   notify: Restart gocd-server
   tags:
     - gocd
+
+- name: Create plugins/external directory
+  file:
+    path: /var/lib/go-server/plugins/external
+    state: directory
+    owner: go
+    group: go
+  become: true
+  tags:
+    - gocd
+
+- name: Install gocd-server kubernetes elastic plugin
+  get_url:
+    url: https://github.com/gocd/kubernetes-elastic-agents/releases/download/v3.6.0-209/kubernetes-elastic-agent-3.6.0-209.jar
+    dest: /var/lib/go-server/plugins/external/kubernetes-elastic-agent-3.6.0-209.jar
+    owner: go
+    group: go
+  become: true
+  notify: Restart gocd-server
+  tags:
+    - gocd
