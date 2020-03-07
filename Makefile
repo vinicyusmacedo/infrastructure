@@ -32,3 +32,6 @@ ssh-vagrant:
 
 destroy-vagrant:
 	cd ${PWD}/ansible/${PLAYBOOK} && vagrant destroy
+
+check-gocd:
+	gocd configrepo syntax --yaml ${FILENAME}

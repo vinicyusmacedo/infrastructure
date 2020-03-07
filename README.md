@@ -10,6 +10,7 @@ You should follow the guides of each tool to install them (but I suggest you use
 - Vagrant
 - Terraform
 - Packer
+- gocd cli
 
 # Molecule
 
