@@ -11,4 +11,4 @@ pipelines:
           build_job:
             tasks:
             - exec:
-              command: make
+                command: make
