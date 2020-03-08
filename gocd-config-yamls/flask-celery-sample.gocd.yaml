@@ -13,7 +13,7 @@ pipelines:
             elastic_profile_id: agent-spec
             tasks:
             - exec:
-                commant: make
+                command: make
                 arguments:
                 - install
           lint:
