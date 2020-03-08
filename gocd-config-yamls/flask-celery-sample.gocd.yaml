@@ -9,8 +9,14 @@ pipelines:
     stages:
     - verify:
         jobs:
+          install:
+            elastic_profile_id: agent-spec
+            tasks:
+            - exec:
+                commant: make
+                arguments:
+                - install
           lint:
-            approval: manual
             elastic_profile_id: agent-spec
             tasks:
             - exec:
