@@ -1,6 +1,6 @@
 format_version: 9
 pipelines:
-  preflight-pipe-pipe:
+  preflight:
     group: flask-celery-sample
     display_order: 1
     materials:
@@ -45,12 +45,12 @@ pipelines:
                 command: /bin/bash
                 arguments:
                 - docker build -t $DOCKERHUB_USERNAME/flask-celery-sample:$GO_PIPELINE_LABEL
-  stage-pipe:
+  stage:
     display_order: 2
     group: flask-celery-sample
     materials:
       upstream:
-        pipeline: preflight-pipe
+        pipeline: preflight
         stage: build
         name: upstream
     stages:
@@ -62,16 +62,16 @@ pipelines:
             tasks:
             - fetch: 
                 artifact_id: flask-celery-sample
-                pipeline: preflight-pipe
+                pipeline: preflight
                 stage: build
                 job: build-image
                 artifact_origin: external
-  promote-pipe:
+  promote:
     display_order: 3
     group: flask-celery-sample
     materials:
       upstream:
-        pipeline: preflight-pipe
+        pipeline: preflight
         stage: build
         name: upstream
     stages:
@@ -83,7 +83,7 @@ pipelines:
             tasks:
             - fetch: 
                 artifact_id: flask-celery-sample
-                pipeline: preflight-pipe
+                pipeline: preflight
                 stage: build
                 job: build-image
                 artifact_origin: external
