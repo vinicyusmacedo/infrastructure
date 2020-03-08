@@ -60,7 +60,7 @@ pipelines:
         fetch_materials: true
         jobs:
           deploy_on_k8s_staging:
-            elastic_profile_id: flask-celery-sample-staging
+            elastic_profile_id: agent-spec
             tasks:
             - fetch: 
                 artifact_id: flask-celery-sample
@@ -81,7 +81,7 @@ pipelines:
         fetch_materials: true
         jobs:
           deploy_on_k8s_prod:
-            elastic_profile_id: flask-celery-sample-prod
+            elastic_profile_id: agent-spec
             tasks:
             - fetch: 
                 artifact_id: flask-celery-sample
