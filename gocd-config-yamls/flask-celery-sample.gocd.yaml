@@ -25,6 +25,22 @@ pipelines:
                 command: make
                 arguments:
                 - test-behave
+    - build:
+      jobs:
+        build-image:
+          artifacts:
+          - external:
+            id: flask-celery-sample
+            store_id: dockerhub
+            configuration:
+              options:
+                Image: ${DOCKERHUB_USERNAME}/flask-celery-sample
+                Tag: ${GO_PIPELINE_LABEL}
+          tasks:
+          - exec:
+              command: /bin/bash
+              arguments:
+              - docker build -t $DOCKERHUB_USERNAME/flask-celery-sample:$GO_PIPELINE_LABEL
   stage:
     display_order: 2
     group: flask-celery-sample
