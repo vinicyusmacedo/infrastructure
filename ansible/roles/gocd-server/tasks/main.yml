@@ -59,3 +59,14 @@
   notify: Restart gocd-server
   tags:
     - gocd
+
+- name: Install gocd-server docker artifact plugin
+  get_url:
+    url: https://github.com/gocd/docker-registry-artifact-plugin/releases/download/v1.1.0-125-exp/docker-registry-artifact-plugin-1.1.0-125.jar
+    dest: /var/lib/go-server/plugins/external/ocker-registry-artifact-plugin-1.1.0-125.jar
+    owner: go
+    group: go
+  become: true
+  notify: Restart gocd-server
+  tags:
+    - gocd

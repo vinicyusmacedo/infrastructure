@@ -23,3 +23,8 @@ def test_gocd_kubernetes_plugin_exists(host):
     s = host.file("/var/lib/go-server/plugins/external/kubernetes-elastic-agent-3.6.0-209.jar")
 
     assert s.exists
+
+def test_gocd_docker_plugin_exists(host):
+    s = host.file("/var/lib/go-server/plugins/external/ocker-registry-artifact-plugin-1.1.0-125.jar")
+
+    assert s.exists

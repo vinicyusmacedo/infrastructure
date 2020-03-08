@@ -38,3 +38,6 @@ stop-vagrant:
 
 check-gocd:
 	gocd configrepo syntax --yaml ${FILENAME}
+
+kustomize-dry-run:
+	kubectl kustomize ${KPATH}

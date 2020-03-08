@@ -9,6 +9,12 @@ pipelines:
     stages:
     - verify:
         jobs:
+          install:
+            tasks:
+            - exec:
+                command: make
+                arguments:
+                - install
           lint:
             tasks:
             - exec:
