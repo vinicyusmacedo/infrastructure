@@ -10,18 +10,21 @@ pipelines:
     - verify:
         jobs:
           install:
+            elastic_profile_id: agent-spec
             tasks:
             - exec:
                 command: make
                 arguments:
                 - install
           lint:
+            elastic_profile_id: agent-spec
             tasks:
             - exec:
                 command: make
                 arguments:
                 - lint
           test:
+            elastic_profile_id: agent-spec
             tasks:
             - exec:
                 command: make
@@ -34,6 +37,7 @@ pipelines:
     - build:
         jobs:
           build-image:
+            elastic_profile_id: agent-spec
             artifacts:
             - external:
                 id: flask-celery-sample
