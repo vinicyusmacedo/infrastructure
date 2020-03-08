@@ -1,0 +1,18 @@
+format_version: 9
+pipelines:
+  toast:
+    group: test
+    display_order: 1
+    materials:
+      github:
+        git: https://github.com/vinicyusmacedo/flask-celery-sample.git
+    stages:
+    - verify:
+        jobs:
+          lint:
+            elastic_profile_id: agent-spec
+            tasks:
+            - exec:
+                command: make
+                arguments:
+                - lint
