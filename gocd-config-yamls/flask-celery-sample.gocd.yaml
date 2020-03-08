@@ -13,6 +13,8 @@ pipelines:
             elastic_profile_id: agent-spec
             tasks:
             - exec:
+                command: apt install build-essentials
+            - exec:
                 command: make
                 arguments:
                 - install
