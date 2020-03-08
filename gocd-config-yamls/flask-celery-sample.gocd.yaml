@@ -29,6 +29,12 @@ pipelines:
           install_and_test:
             elastic_profile_id: agent-spec
             tasks:
+            - fetch: 
+                artifact_id: flask-celery-sample
+                pipeline: preflight-new
+                stage: build
+                job: build-image
+                artifact_origin: external
             - exec:
                 command: /bin/bash
                 arguments:
@@ -46,14 +52,12 @@ pipelines:
         fetch_materials: true
         jobs:
           deploy_on_k8s_staging:
-            elastic_profile_id: agent-spec
+            elastic_profile_id: kubectl-agent
             tasks:
-            - fetch: 
-                artifact_id: flask-celery-sample
-                pipeline: preflight-new
-                stage: build
-                job: build-image
-                artifact_origin: external
+            - exec: 
+                command: make
+                arguments:
+                - deploy-staging
   promote:
     display_order: 3
     group: flask-celery-sample
@@ -67,11 +71,9 @@ pipelines:
         fetch_materials: true
         jobs:
           deploy_on_k8s_prod:
-            elastic_profile_id: agent-spec
+            elastic_profile_id: kubectl-agent
             tasks:
-            - fetch: 
-                artifact_id: flask-celery-sample
-                pipeline: preflight-new
-                stage: build
-                job: build-image
-                artifact_origin: external
+            - exec: 
+                command: make
+                arguments:
+                - deploy-prod
