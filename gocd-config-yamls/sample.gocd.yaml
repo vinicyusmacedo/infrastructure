@@ -1,6 +1,6 @@
 format_version: 9
 pipelines:
-  toast:
+  preflight:
     group: test
     display_order: 1
     materials:
@@ -10,9 +10,21 @@ pipelines:
     - verify:
         jobs:
           lint:
+            approval: manual
             elastic_profile_id: agent-spec
             tasks:
             - exec:
                 command: make
                 arguments:
                 - lint
+          test:
+            elastic_profile_id: agent-spec
+            tasks:
+            - exec:
+                command: make
+                arguments:
+                - test-unit
+            - exec:
+                command: make
+                arguments:
+                - test-behave
