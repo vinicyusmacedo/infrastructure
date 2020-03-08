@@ -1,6 +1,6 @@
 format_version: 9
 pipelines:
-  preflight-pipe:
+  preflight-pipe-pipe:
     group: flask-celery-sample
     display_order: 1
     materials:
@@ -50,7 +50,7 @@ pipelines:
     group: flask-celery-sample
     materials:
       upstream:
-        pipeline: preflight
+        pipeline: preflight-pipe
         stage: build
         name: upstream
     stages:
@@ -62,7 +62,7 @@ pipelines:
             tasks:
             - fetch: 
                 artifact_id: flask-celery-sample
-                pipeline: preflight
+                pipeline: preflight-pipe
                 stage: build
                 job: build-image
                 artifact_origin: external
@@ -71,7 +71,7 @@ pipelines:
     group: flask-celery-sample
     materials:
       upstream:
-        pipeline: preflight
+        pipeline: preflight-pipe
         stage: build
         name: upstream
     stages:
@@ -83,7 +83,7 @@ pipelines:
             tasks:
             - fetch: 
                 artifact_id: flask-celery-sample
-                pipeline: preflight
+                pipeline: preflight-pipe
                 stage: build
                 job: build-image
                 artifact_origin: external
