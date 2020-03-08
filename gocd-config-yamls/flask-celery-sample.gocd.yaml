@@ -60,7 +60,7 @@ pipelines:
                 artifact_id: flask-celery-sample
                 pipeline: preflight
                 stage: build
-                job: build_image
+                job: build-image
                 artifact_origin: external
   promote:
     display_order: 3
@@ -81,5 +81,5 @@ pipelines:
                 artifact_id: flask-celery-sample
                 pipeline: preflight
                 stage: build
-                job: build_image
+                job: build-image
                 artifact_origin: external
