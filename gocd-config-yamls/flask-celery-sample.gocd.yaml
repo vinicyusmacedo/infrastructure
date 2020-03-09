@@ -23,7 +23,6 @@ pipelines:
             - exec:
                 command: /bin/bash
                 arguments:
-                - pwd
                 - docker build -t docker.io/sucymanbaravan/flask-celery-sample:latest . 
   stage:
     display_order: 2
