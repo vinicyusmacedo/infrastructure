@@ -17,13 +17,13 @@ pipelines:
                 store_id: dockerhub
                 configuration:
                   options:
-                    Image: ${DOCKERHUB_USERNAME}/flask-celery-sample
-                    Tag: ${GO_PIPELINE_LABEL}
+                    Image: docker.io/sucymanbaravan/flask-celery-sample
+                    Tag: latest
             tasks:
             - exec:
                 command: /bin/bash
                 arguments:
-                - docker build -t $DOCKERHUB_USERNAME/flask-celery-sample:$GO_PIPELINE_LABEL
+                - docker build -t docker.io/sucymanbaravan/flask-celery-sample:latest
   stage:
     display_order: 2
     group: flask-celery-sample
