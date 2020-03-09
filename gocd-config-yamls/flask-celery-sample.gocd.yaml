@@ -41,9 +41,11 @@ pipelines:
             elastic_profile_id: kubectl-agent
             tasks:
             - exec: 
-                command: make
+                command: kubectl
                 arguments:
-                - deploy-staging
+                - apply
+                - -k
+                - kustomize
   promote:
     display_order: 3
     group: flask-celery-sample
@@ -60,6 +62,8 @@ pipelines:
             elastic_profile_id: kubectl-agent
             tasks:
             - exec: 
-                command: make
+                command: kubectl
                 arguments:
-                - deploy-prod
+                - apply
+                - -k
+                - kustomize
