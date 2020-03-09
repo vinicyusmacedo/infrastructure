@@ -24,21 +24,6 @@ pipelines:
                 command: /bin/bash
                 arguments:
                 - docker build -t $DOCKERHUB_USERNAME/flask-celery-sample:$GO_PIPELINE_LABEL
-    - verify:
-        jobs:
-          install_and_test:
-            elastic_profile_id: agent-spec
-            tasks:
-            - fetch: 
-                artifact_id: flask-celery-sample
-                pipeline: preflight-new
-                stage: build
-                job: build-image
-                artifact_origin: external
-            - exec:
-                command: /bin/bash
-                arguments:
-                - docker run -t --rm --name flask-celery-sample-test DOCKERHUB_USERNAME/flask-celery-sample:$GO_PIPELINE_LABEL make test
   stage:
     display_order: 2
     group: flask-celery-sample
