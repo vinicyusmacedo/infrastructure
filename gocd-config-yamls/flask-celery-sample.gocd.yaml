@@ -38,12 +38,13 @@ pipelines:
         fetch_materials: true
         jobs:
           deploy_on_k8s_staging:
-            elastic_profile_id: ubuntu-agent
+            elastic_profile_id: kubectl-agent
             tasks:
             - exec: 
                 command: /bin/bash
                 arguments:
-                - -c curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && ./kubectl apply -k kustomize
+                - -c
+                - kubectl kustomize kustomize
   promote:
     display_order: 3
     group: flask-celery-sample
@@ -60,8 +61,7 @@ pipelines:
             elastic_profile_id: kubectl-agent
             tasks:
             - exec: 
-                command: kubectl
+                command: /bin/bash
                 arguments:
-                - apply
-                - -k
-                - kustomize
+                - -c
+                - kubectl kustomize kustomize
