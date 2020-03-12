@@ -29,6 +29,10 @@ pipelines:
     group: flask-celery-sample
     display_order: 2
     materials:
+      preflight-pipe:
+        pipeline: preflight
+        stage: build-image
+        name: preflight
       github:
         git: https://github.com/vinicyusmacedo/flask-celery-sample.git
     stages:
