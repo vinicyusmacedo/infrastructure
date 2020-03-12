@@ -25,9 +25,9 @@ pipelines:
                 arguments:
                 - -c
                 - docker build -t docker.io/sucymanbaravan/flask-celery-sample:latest . 
-    - deploy_staging:
+    - dry_run_deploy_staging:
         jobs:
-          deploy_on_k8s_staging:
+          kustomize-staging:
             elastic_profile_id: kubectl-agent
             tasks:
             - exec: 
@@ -35,3 +35,13 @@ pipelines:
                 arguments:
                 - -c
                 - kubectl kustomize kustomize
+    - deploy-staging:
+        jobs:
+          kustomize-apply-staging:
+            elastic_profile_id: kubectl-agent
+            tasks:
+            - exec: 
+                command: /bin/bash
+                arguments:
+                - -c
+                - kubectl apply -k kustomize
