@@ -1,6 +1,6 @@
 format_version: 9
 pipelines:
-  flask-celery-sample:
+  preflight:
     group: flask-celery-sample
     display_order: 1
     materials:
@@ -25,7 +25,14 @@ pipelines:
                 arguments:
                 - -c
                 - docker build -t docker.io/sucymanbaravan/flask-celery-sample:latest . 
-    - dry_run_deploy_staging:
+  deploy-staging:
+    group: flask-celery-sample
+    display_order: 2
+    materials:
+      github:
+        git: https://github.com/vinicyusmacedo/flask-celery-sample.git
+    stages:
+    - dry-run-deploy-staging:
         jobs:
           kustomize-staging:
             elastic_profile_id: kubectl-agent
