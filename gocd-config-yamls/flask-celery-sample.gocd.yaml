@@ -44,7 +44,7 @@ pipelines:
                 command: /bin/bash
                 arguments:
                 - -c
-                - ls && kubectl kustomize kustomize
+                - ls
   promote:
     display_order: 3
     group: flask-celery-sample
