@@ -1,6 +1,6 @@
 format_version: 9
 pipelines:
-  preflight-new:
+  flask-celery-sample:
     group: flask-celery-sample
     display_order: 1
     materials:
@@ -25,39 +25,9 @@ pipelines:
                 arguments:
                 - -c
                 - docker build -t docker.io/sucymanbaravan/flask-celery-sample:latest . 
-  stage:
-    display_order: 2
-    group: flask-celery-sample
-    materials:
-      upstream:
-        pipeline: preflight-new
-        stage: build
-        name: upstream
-    stages:
     - deploy_staging:
-        fetch_materials: true
         jobs:
           deploy_on_k8s_staging:
-            elastic_profile_id: kubectl-agent
-            tasks:
-            - exec: 
-                command: /bin/bash
-                arguments:
-                - -c
-                - ls
-  promote:
-    display_order: 3
-    group: flask-celery-sample
-    materials:
-      upstream:
-        pipeline: preflight-new
-        stage: build
-        name: upstream
-    stages:
-    - deploy_prod:
-        fetch_materials: true
-        jobs:
-          deploy_on_k8s_prod:
             elastic_profile_id: kubectl-agent
             tasks:
             - exec: 
