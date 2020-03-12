@@ -31,7 +31,7 @@ pipelines:
     materials:
       preflight-pipe:
         pipeline: preflight
-        stage: build-image
+        stage: build
         name: preflight
       github:
         git: https://github.com/vinicyusmacedo/flask-celery-sample.git
